@@ -9,11 +9,11 @@ api = ""
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
-# kb = ReplyKeyboardMarkup(resize_keyboard=True)
-# bt_clrs = KeyboardButton(text='Рассчитать')
-# bt_info = KeyboardButton(text='Информация')
-# kb.add(bt_clrs)
-# kb.add(bt_info)
+kb = ReplyKeyboardMarkup(resize_keyboard=True)
+bt_clrs = KeyboardButton(text='Рассчитать')
+bt_info = KeyboardButton(text='Информация')
+kb.add(bt_clrs)
+kb.add(bt_info)
 
 kb_1 = InlineKeyboardMarkup()
 bt_clrs_1 = InlineKeyboardButton(text='Рассчитать норму калорий', callback_data='calories')
@@ -41,7 +41,7 @@ async def get_formulas(call):
 
 @dp.message_handler(commands=["start"])
 async def start_message(message):
-    await message.answer(text='Привет! Я бот помогающий твоему здровью.')
+    await message.answer(text='Привет! Я бот помогающий твоему здровью.', reply_markup=kb)
 
 
 @dp.callback_query_handler(text=['calories'])
